@@ -9,9 +9,10 @@
 }
 
 html {
-  overflow: hidden;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
-body {
-  overflow: hidden;
+html::-webkit-scrollbar {
+  display: none;
 }
