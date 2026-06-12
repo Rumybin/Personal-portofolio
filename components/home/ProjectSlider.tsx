@@ -62,10 +62,8 @@ export default function ProjectSlider({ projects }: Props) {
   if (!project) return null
 
   return (
-    <div
-      className="flex items-center justify-start"
-    >
-      <div className="w-full max-w-sm">
+    <div className="flex items-center justify-start">
+      <div className="w-full max-w-lg">
         <AnimatePresence mode="wait">
           <motion.div
             key={project.id}
@@ -76,7 +74,7 @@ export default function ProjectSlider({ projects }: Props) {
             transition={{ duration: 0.35, ease: 'easeInOut' }}
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
-            className="w-full rounded-2xl border border-border-subtle bg-panel p-6 transition-all duration-500 ease-in-out hover:scale-[1.02] hover:border-accent"
+            className="w-full rounded-2xl border border-border-subtle bg-panel p-8 transition-all duration-500 ease-in-out hover:scale-[1.02] hover:border-accent"
             style={{
               boxShadow: 'none',
               transitionProperty: 'transform, border-color, box-shadow',
@@ -88,13 +86,13 @@ export default function ProjectSlider({ projects }: Props) {
               e.currentTarget.style.boxShadow = 'none'
             }}
           >
-            <div className="space-y-3">
+            <div className="space-y-4">
               {/* Tech stack pills */}
-              <div className="flex flex-wrap gap-1.5">
+              <div className="flex flex-wrap gap-2">
                 {project.techStack.map((tech) => (
                   <span
                     key={tech}
-                    className="rounded-full border border-border-subtle bg-accent-muted px-2 py-0.5 text-xs text-accent"
+                    className="rounded-full border border-border-subtle bg-accent-muted px-3 py-1 text-sm text-accent"
                   >
                     {tech}
                   </span>
@@ -102,18 +100,18 @@ export default function ProjectSlider({ projects }: Props) {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-medium text-foreground">
+              <h3 className="text-2xl font-medium text-foreground">
                 {project.title}
               </h3>
 
               {/* Summary */}
-              <p className="text-sm leading-relaxed text-secondary">
+              <p className="text-base leading-relaxed text-secondary">
                 {project.summary}
               </p>
 
               {/* Bottom row: view link + dot indicators */}
               <div className="flex items-center justify-between pt-2">
-                <span className="text-xs text-accent">View &rarr;</span>
+                <span className="text-sm text-accent">View &rarr;</span>
                 <div className="flex items-center gap-1.5">
                   {Array.from({ length: totalSlides }).map((_, i) => (
                     <span
@@ -132,3 +130,4 @@ export default function ProjectSlider({ projects }: Props) {
     </div>
   )
 }
+

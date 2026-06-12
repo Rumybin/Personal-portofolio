@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import HomeSplitLayout from '@/components/home/HomeSplitLayout'
+import CursorGlow from '@/components/home/CursorGlow'
 
 export const metadata: Metadata = {
   title: 'TOR Drive',
@@ -15,8 +16,9 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <main className="h-screen overflow-hidden">
-        <HomeSplitLayout />
+    <main className="relative h-screen overflow-hidden">
+      <CursorGlow />
+      <HomeSplitLayout />
     </main>
   )
 }
