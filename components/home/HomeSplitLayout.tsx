@@ -14,7 +14,7 @@ export default function HomeSplitLayout() {
   return (
     <div className="flex h-screen flex-col overflow-hidden md:grid md:grid-cols-2">
       <IdentityPanel />
-      <div className={cn('bg-panel')}>
+                  <div className="h-full">
         <StorySlide slides={slides} />
       </div>
     </div>
