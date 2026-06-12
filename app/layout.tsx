@@ -8,6 +8,14 @@ export const metadata: Metadata = {
     template: '%s | TOR Drive',
   },
   description: 'Personal portfolio — System Information student with a path into Data Analytics and AI Engineering.',
+  openGraph: {
+    siteName: 'TOR Drive',
+    type: 'website',
+    locale: 'en_US',
+  },
+  twitter: {
+    card: 'summary',
+  },
 }
 
 export default function RootLayout({

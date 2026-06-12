@@ -20,6 +20,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: project.title,
     description: project.summary,
+    openGraph: {
+      title: `${project.title} | TOR Drive`,
+      description: project.summary,
+      type: 'article',
+    },
+    twitter: {
+      title: `${project.title} | TOR Drive`,
+      description: project.summary,
+    },
   }
 }
 
@@ -92,3 +101,4 @@ export default function ProjectDetailPage({ params }: Props) {
     </Container>
   )
 }
+
