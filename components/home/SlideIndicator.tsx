@@ -12,7 +12,7 @@ export default function SlideIndicator({ currentIndex, totalSlides, onDotClick }
   if (totalSlides < 1) return null
 
   return (
-    <div className="absolute right-6 top-1/2 flex -translate-y-1/2 flex-col items-center gap-3">
+    <div className="absolute right-6 top-1/2 z-10 flex -translate-y-1/2 flex-col items-center gap-3">
       {Array.from({ length: totalSlides }).map((_, i) => (
         <button
           key={i}

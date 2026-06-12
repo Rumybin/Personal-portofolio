@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils'
 import IdentityPanel from '@/components/home/IdentityPanel'
 import StorySlide from '@/components/home/StorySlide'
 import { siteConfig } from '@/data/site'
@@ -13,7 +14,9 @@ export default function HomeSplitLayout() {
   return (
     <div className="flex h-screen flex-col overflow-hidden md:grid md:grid-cols-2">
       <IdentityPanel />
-      <StorySlide slides={slides} />
+      <div className={cn('bg-panel')}>
+        <StorySlide slides={slides} />
+      </div>
     </div>
   )
 }

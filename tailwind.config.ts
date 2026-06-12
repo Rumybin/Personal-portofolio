@@ -8,17 +8,16 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        accent: {
-          50: '#f0f4f8',
-          100: '#d9e2ec',
-          200: '#bcccdc',
-          300: '#9fb3c8',
-          400: '#829ab1',
-          500: '#627d98',
-          600: '#486581',
-          700: '#334e68',
-          800: '#243b53',
-          900: '#102a43',
+        background: '#0c0c0c',
+        panel: '#0d1f1e',
+        surface: '#0f1a19',
+        foreground: '#f0f0f0',
+        secondary: '#a3a3a3',
+        accent: '#2dd4bf',
+        'accent-hover': '#14b8a6',
+        'accent-muted': '#0f3d38',
+        border: {
+          subtle: '#1a3532',
         },
       },
     },
@@ -27,3 +26,4 @@ const config: Config = {
 }
 
 export default config
+
