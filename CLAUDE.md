@@ -73,8 +73,8 @@ Default stack:
 - Vercel deployment.
 
 Confirmed additional libraries (installed and approved):
-- `framer-motion` — used for slide transitions in StorySlide (AnimatePresence, vertical translate).
-- `lucide-react` — used for icons (ChevronLeft, ChevronRight, etc.).
+- `framer-motion` -- used for slide transitions in StorySlide (AnimatePresence, vertical translate).
+- `lucide-react` -- installed but not actively used in any component yet.
 
 Unless explicitly approved:
 - do not install new libraries beyond the above,
@@ -291,19 +291,13 @@ A task is not done unless:
 
 ## Homepage Interaction Rules
 
-The homepage follows a split-screen, scroll-driven slide structure.
+The homepage follows a split-screen layout.
 
 - Left side stays anchored with identity content on desktop. On mobile, it collapses to a compact header.
-- Right side changes by slide. Currently supports three slide types (defined in `types/site.ts` as `SlideContent` union):
-  - `'text'` — story slides from `siteConfig.stories`.
-  - `'projects'` — featured projects grid rendered via ProjectCard.
-  - `'about'` — about preview with name, role, bio, and skill badges.
-- Navigation: wheel scroll, touch swipe (50px threshold), Arrow Up/Down keys.
-- Animation: Framer Motion AnimatePresence with vertical translate (320px), 0.55s ease-in-out.
-- Animation lock: isAnimating state prevents concurrent transitions until onAnimationComplete fires.
-- No auto-play, no prev/next buttons, no dot indicators.
-- The final slide should present a node/network visual (not yet implemented).
+- Right side displays a `ProjectSlider` component — auto-advancing project cards with 3s interval and loop.
+- Project slider: Framer Motion AnimatePresence with vertical translate (30px), 0.35s ease-in-out.
+- Cards pause on hover (`onMouseEnter` pauses timer, `onMouseLeave` resumes).
+- No scroll-driven slide deck, no wheel/touch/keyboard slide navigation, no SlideIndicator.
+- The homepage does NOT use the `(main)` route group layout, so Header and Footer do not appear on the home page.
 - `html` and `body` use `overflow: hidden` to suppress the browser scrollbar on the home page.
 - Motion should be subtle and readable.
-- Do not replace this structure with a standard long-scroll page unless explicitly requested.
-- Preserve the storytelling order unless the user changes it.

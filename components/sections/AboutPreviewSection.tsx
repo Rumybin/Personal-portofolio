@@ -9,15 +9,15 @@ import SkillBadge from '@/components/ui/SkillBadge'
 export default function AboutPreviewSection() {
   const topSkills = skillGroups.flatMap((g) => g.skills).slice(0, 5)
 
-  return (
+    return (
     <div className="flex h-full flex-col justify-center">
-      <h2 className="mb-1 text-xl font-semibold tracking-tight text-black dark:text-white">
+      <h2 className="mb-1 text-xl font-semibold tracking-tight text-foreground">
         {siteConfig.name}
       </h2>
-      <p className="mb-4 text-sm text-neutral-500 dark:text-neutral-400">
+      <p className="mb-4 text-sm text-secondary">
         {siteConfig.role}
       </p>
-      <p className="mb-6 text-base leading-relaxed text-neutral-500 dark:text-neutral-400">
+      <p className="mb-6 text-base leading-relaxed text-secondary">
         {siteConfig.description}
       </p>
 
@@ -31,7 +31,7 @@ export default function AboutPreviewSection() {
         href="/about"
         className={cn(
           'inline-block text-sm font-medium tracking-wide uppercase transition-colors',
-          'text-neutral-500 hover:text-black dark:text-neutral-400 dark:hover:text-white',
+          'text-secondary hover:text-accent',
         )}
       >
         More About Me &rarr;
