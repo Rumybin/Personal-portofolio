@@ -72,11 +72,15 @@ Default stack:
 - Tailwind CSS.
 - Vercel deployment.
 
+Confirmed additional libraries (installed and approved):
+- `framer-motion` — used for slide transitions in StorySlide (AnimatePresence, vertical translate).
+- `lucide-react` — used for icons (ChevronLeft, ChevronRight, etc.).
+
 Unless explicitly approved:
-- do not install new libraries,
-- do not introduce state libraries,
+- do not install new libraries beyond the above,
+- do not introduce state management libraries,
 - do not add a CMS yet,
-- do not add animation libraries,
+- do not add animation libraries beyond framer-motion,
 - do not add heavy UI frameworks.
 
 Prefer built-in platform features and simple local data structures first.
@@ -289,10 +293,17 @@ A task is not done unless:
 
 The homepage follows a split-screen, scroll-driven slide structure.
 
-- Left side stays mostly anchored with identity and portrait content.
-- Right side changes by section.
-- Overview and top 3 projects must appear as separate slides.
-- The final slide should present a node/network visual.
+- Left side stays anchored with identity content on desktop. On mobile, it collapses to a compact header.
+- Right side changes by slide. Currently supports three slide types (defined in `types/site.ts` as `SlideContent` union):
+  - `'text'` — story slides from `siteConfig.stories`.
+  - `'projects'` — featured projects grid rendered via ProjectCard.
+  - `'about'` — about preview with name, role, bio, and skill badges.
+- Navigation: wheel scroll, touch swipe (50px threshold), Arrow Up/Down keys.
+- Animation: Framer Motion AnimatePresence with vertical translate (320px), 0.55s ease-in-out.
+- Animation lock: isAnimating state prevents concurrent transitions until onAnimationComplete fires.
+- No auto-play, no prev/next buttons, no dot indicators.
+- The final slide should present a node/network visual (not yet implemented).
+- `html` and `body` use `overflow: hidden` to suppress the browser scrollbar on the home page.
 - Motion should be subtle and readable.
 - Do not replace this structure with a standard long-scroll page unless explicitly requested.
 - Preserve the storytelling order unless the user changes it.

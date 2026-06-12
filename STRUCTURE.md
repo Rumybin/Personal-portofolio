@@ -24,6 +24,11 @@ The structure must remain simple, scalable, and easy to understand.
 │   └── globals.css
 │
 ├── components/
+│   ├── home/
+│   │   ├── HomeSplitLayout.tsx    # Builds slide array, wraps IdentityPanel + StorySlide
+│   │   ├── IdentityPanel.tsx      # Left panel — dual mode (mobile compact / desktop full)
+│   │   └── StorySlide.tsx         # Right panel — vertical scroll-driven slide deck
+│   │
 │   ├── layout/
 │   │   ├── Header.tsx
 │   │   ├── Footer.tsx
@@ -80,7 +85,7 @@ The structure must remain simple, scalable, and easy to understand.
 ├── PROGRESS.md
 ├── package.json
 ├── tsconfig.json
-├── next.config.ts
+├── next.config.mjs
 └── README.md
 ```
 
@@ -95,6 +100,14 @@ Rules:
 - One directory per route when needed.
 - Keep page files focused on composition, not low-level UI logic.
 - Shared site shell belongs in `layout.tsx`.
+
+### `components/home/`
+Contains components specific to the home page slide deck.
+
+Files:
+- `HomeSplitLayout.tsx` — builds the slide array from data, renders IdentityPanel + StorySlide.
+- `IdentityPanel.tsx` — left panel with two modes: compact header (mobile) and full panel (desktop).
+- `StorySlide.tsx` — right panel scroll-driven slide deck. Handles wheel, touch swipe, and keyboard navigation. Renders different slide types based on `SlideContent` union type.
 
 ### `components/layout/`
 Contains global layout components.
@@ -251,17 +264,20 @@ This project should feel intentionally structured, not inflated.
 
 ## Homepage-Specific Components
 
-The homepage should support a split-screen storytelling pattern.
+The homepage uses a split-screen storytelling pattern.
 
-Suggested components:
-- `HomeSplitLayout.tsx`
-- `IdentityPanel.tsx`
-- `StorySlide.tsx`
-- `OverviewSlide.tsx`
-- `ProjectSlide.tsx`
-- `NodeNetworkSlide.tsx`
+Components:
+- `HomeSplitLayout.tsx` — container. Builds `SlideContent[]` array, renders IdentityPanel + StorySlide.
+- `IdentityPanel.tsx` — left panel. Compact header on mobile, full panel on desktop.
+- `StorySlide.tsx` — right panel. Vertical scroll-driven slide deck.
 
-Suggested behavior:
-- Left panel remains stable.
-- Right panel advances by slide.
-- Use scroll-triggered transitions only when they improve clarity.
+Slide types (defined in `types/site.ts` as `SlideContent` union type):
+- `'text'` — story slides sourced from `siteConfig.stories`.
+- `'projects'` — featured projects grid using ProjectCard.
+- `'about'` — about preview with name, role, bio, skill badges, link to /about.
+
+Behavior:
+- Left panel stays anchored on desktop.
+- Right panel advances by slide on wheel scroll, touch swipe, or Arrow Up/Down keys.
+- Animation lock prevents concurrent transitions during the 0.55s animation window.
+- `html` and `body` are set to `overflow: hidden` to suppress the native browser scrollbar.
