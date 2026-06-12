@@ -1,9 +1,20 @@
+import IdentityPanel from '@/components/home/IdentityPanel'
+import StorySlide from '@/components/home/StorySlide'
+import { siteConfig } from '@/data/site'
+import type { SlideContent } from '@/types'
+
 export default function HomeSplitLayout() {
+  const slides: SlideContent[] = [
+    ...siteConfig.stories.map((s) => ({ type: 'text' as const, ...s })),
+    { type: 'projects' as const },
+    { type: 'about' as const },
+  ]
+
   return (
-    <div className="grid min-h-[calc(100vh-4rem)] grid-cols-1 md:grid-cols-2">
-      {/* TODO: left panel — IdentityPanel; right panel — scroll-driven slides */}
-      <div>Identity Panel Placeholder</div>
-      <div>Story Slide Placeholder</div>
+    <div className="flex h-screen flex-col md:grid md:grid-cols-2">
+      <IdentityPanel />
+      <StorySlide slides={slides} />
     </div>
   )
 }
+

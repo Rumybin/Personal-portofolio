@@ -7,3 +7,11 @@
 *::after {
   box-sizing: border-box;
 }
+
+html {
+  overflow: hidden;
+}
+
+body {
+  overflow: hidden;
+}
